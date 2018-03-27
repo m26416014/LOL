@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="./jmobile/jquery.mobile-1.4.5.css" />
+ 	<script src=./jmobile/demos/js/jquery.js></script>
+ 	<script src=./jmobile/jquery.mobile-1.4.5.js></script>
+ 	<script src=jmobile/jquery.mobile-1.4.5.min.js></script>
+	<script src=jmobile/jquery.js></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script type="text/javascript">
+   		$(document).ready(function(){
+   			$('.target').on('change', function(){
+   			var url = $(this).val();
+   			window.location = url;
+   			});
+ 		});
+		function pangkat() {
+       		document.getElementById("hasilpang").value = Math.pow(document.getElementById("a").value,document.getElementById("p").value)
+   		};
+   		function faktorial() {
+     		document.getElementById("hasilfac").value = 1
+     		for (i = 1; i <= document.getElementById("fac").value; i++) {
+       			document.getElementById("hasilfac").value *= i
+     		};
+     	};
+     	function convert() {
+ 			document.getElementById("warna").style.backgroundColor =
+ 			"rgb("+document.getElementById("r").value+","
+ 			+document.getElementById("g").value+","
+ 			+document.getElementById("b").value+")";
+		};
+		$( document ).on( "click", ".show-page-loading-msg", function() {
+    		var $this = $( this ),
+        		theme = $this.jqmData( "theme" ) || $.mobile.loader.prototype.options.theme,
+        		msgText = $this.jqmData( "msgtext" ) || $.mobile.loader.prototype.options.text,
+        		textVisible = $this.jqmData( "textvisible" ) || $.mobile.loader.prototype.options.textVisible,
+        		textonly = !!$this.jqmData( "textonly" );
+        		html = $this.jqmData( "html" ) || "";
+    		$.mobile.loading( "show", {
+            		text: msgText,
+            		textVisible: textVisible,
+            		theme: theme,
+            		textonly: textonly,
+            		html: html
+    		});
+		})
+.on( "click", ".hide-page-loading-msg", function() {
+    $.mobile.loading( "hide" );
+});
+ 	</script>
+</head>
+
+<body>
+	<div data-role="page" id=win1>
+
+		<div data-role="header">
+			<label for="select-choice-0" id="select">Go to :</label>
+			<select name="select-choice-0" class="target">
+				<option value="#win1" selected>Kalkulator</option>
+	   			<option value="#win2">Warna</option>
+	   			<option value="#win3">Rangkuman</option>
+			</select>
+		</div>
+
+		<div data-role="content">
+			<h1>Kalkulator Pangkat</h1>
+     		<br>
+     		<input type="number" id=a placeholder="masukkan angka">
+     		<input type="number" id=p placeholder="masukkan pangkat">
+     		<input type="number" id=hasilpang>
+     		<button onclick="pangkat()"> HITUNG </button>
+     
+     		<h1>Kalkulator Faktorial</h1>
+     		<br>
+     		<input type="number" id=fac placeholder="masukkan angka">
+     		<input type="number" id=hasilfac>
+     		<button onclick="faktorial()"> HITUNG </button>
+     	</div>
+
+     	<b>Loader</b>
+        <br>
+        <button class="show-page-loading-msg" data-textonly="false" data-textvisible="false" data-msgtext="" data-inline="true">Icon (default)</button>
+		<button class="show-page-loading-msg" data-textonly="false" data-textvisible="true" data-msgtext="" data-inline="true">Icon + text</button>
+		<button class="show-page-loading-msg" data-textonly="true" data-textvisible="true" data-msgtext="Text only loader" data-inline="true">Text only</button>
+		<button class="hide-page-loading-msg" data-inline="true" data-icon="delete">Hide</button>
+		<br>
+		<div data-role="footer">
+			<a href=#win2> Go to next page </a>
+		</div>
+	</div>
+
+	<div data-role="page" id=win2>
+		<div data-role="header">
+			<label for="select-choice-0" id="select">Go to :</label>
+			<select name="select-choice-0" class="target">
+				<option value="#win1">Kalkulator</option>
+	   			<option value="#win2" selected>Warna</option>
+	   			<option value="#win3">Rangkuman</option>
+			</select>
+		</div>
+		<div data-role="content">
+			<input type="text" id=r placeholder="Input Red Color">
+			<input type="text" id=g placeholder="Input Green Color">
+			<input type="text" id=b placeholder="Input Blue Color">
+			<textarea id="warna" cols="1000" rows="10"></textarea>
+		</div>
+		<div data-role="footer">
+			<a href=#win1> Go to Homepage </a>
+			<a href=#win3> Go to Nextpage </a>
+		</div>
+	</div>
+
+	<div data-role="page" id=win3>
+		<div data-role="header">
+			<label for="select-choice-0" id="select">Go to :</label>
+			<select name="select-choice-0" class="target">
+				<option value="#win1">Kalkulator</option>
+	   			<option value="#win2">Warna</option>
+	   			<option value="#win3" selected>Rangkuman</option>
+			</select>
+		</div>
+		<div data-role="content">
+			<input type="range" name="red" id="r" min="0" max="100" >
+			<b>Pop Up</b>
+<br>
+<a href="#popupBasic" data-rel="popup" class="ui-btn ui-corner-all ui-shadow ui-btn-inline" data-transition="pop">Basic Popup</a>
+<div data-role="popup" id="popupBasic">
+<b>This is a completely basic popup, no options set.</b>
+</div>
+<br>
+
+<b>table column togle</b>
+<br>
+<br>
+<br>
+<br>
+<table data-role="table" id="phone-table" data-mode="columntoggle" data-column-btn-text="Compare..." data-column-btn-theme="a" class="phone-compare ui-shadow table-stroke">
+  <thead>
+    <tr>
+      <th class="label">Model</th>
+    <th>
+        <h4>Nasi Goreng 1</h4>
+        <h3>Nasi Goreng 2 5</h3>
+    </th>
+    <th data-priority="1">
+        <h4>Nasi Goreng 3</h4>
+        <h3>Nasi Goreng 4</h3>
+    </th>
+    <th data-priority="2">
+        <h4>Nasi Goreng 5</h4>
+
+		</div>
+		<div data-role="footer">
+			<a href=#win1> Go to Homepage </a>
+		</div>
+	</div>
+</body>
+</html>
